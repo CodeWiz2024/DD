@@ -1,0 +1,9 @@
+{
+  "name": "dd-frontend",
+  "version": "1.0.0",
+  "description": "Request Storm Dashboard Frontend",
+  "scripts": {
+    "build": "echo 'Static site'",
+    "start": "echo 'Ready'"
+  }
+}

@@ -1,24 +1,21 @@
 {
-  "buildCommand": "echo 'Static files only'",
+  "buildCommand": "echo 'Static site'",
   "outputDirectory": ".",
   "public": true,
-  "cleanUrls": true,
+  "cleanUrls": false,
   "trailingSlash": false,
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/dashboard.html"
-    }
-  ],
-  "headers": [
+      "src": "/",
+      "dest": "/dashboard.html"
+    },
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
+      "src": "/(.*\\..*)",
+      "dest": "/$1"
+    },
+    {
+      "src": "/.*",
+      "dest": "/dashboard.html"
     }
   ]
 }
