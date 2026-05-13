@@ -12,12 +12,19 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://localhost:3001',
-    'https://dd-navy-two.vercel.app'
+    'http://localhost:8080',
+    'https://dd-navy-two.vercel.app',
+    'https://dd-navy-two.vercel.app/'
   ],
-  credentials: true
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+  credentials: false
 }));
 app.use(express.json());
 app.use(express.static(__dirname));
+
+// Handle preflight
+app.options('*', cors());
 
 // Global controller for request storm
 let stormController = null;
