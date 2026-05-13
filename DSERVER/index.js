@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path');
 const dos = require('./IamHuppy');
 const axios = require('axios');
 const { SocksProxyAgent } = require('socks-proxy-agent');
@@ -23,9 +22,13 @@ app.use(express.static(__dirname));
 // Global controller for request storm
 let stormController = null;
 
-// Serve dashboard
+// Serve health check
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dashboard.html'));
+  res.json({ 
+    message: 'Request Storm API Server Online',
+    frontend: 'https://dd-navy-two.vercel.app',
+    status: 'active'
+  });
 });
 
 // Start request storm
