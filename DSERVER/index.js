@@ -3,11 +3,20 @@ const path = require('path');
 const dos = require('./IamHuppy');
 const axios = require('axios');
 const { SocksProxyAgent } = require('socks-proxy-agent');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'https://dd-navy-two.vercel.app'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.static(__dirname));
 
