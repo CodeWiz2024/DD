@@ -305,6 +305,9 @@
         let isRunning = false;
         let statsInterval = null;
 
+        // Auto-detect base URL (works on localhost and Railway)
+        const API_BASE_URL = window.location.origin;
+
         const form = document.getElementById('stormForm');
         const stopBtn = document.getElementById('stopBtn');
         const statusDiv = document.getElementById('status');
@@ -328,7 +331,7 @@
             }
 
             try {
-                const response = await fetch('/api/start', {
+                const response = await fetch(`${API_BASE_URL}/api/start`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ url, requests, interval, useTor })
@@ -351,7 +354,7 @@
 
         stopBtn.addEventListener('click', async () => {
             try {
-                const response = await fetch('/api/stop', { method: 'POST' });
+                const response = await fetch(`${API_BASE_URL}/api/stop`, { method: 'POST' });
 
                 if (response.ok) {
                     isRunning = false;
@@ -370,7 +373,7 @@
         function startStatsUpdate() {
             statsInterval = setInterval(async () => {
                 try {
-                    const response = await fetch('/api/stats');
+                    const response = await fetch(`${API_BASE_URL}/api/stats`);
                     const data = await response.json();
 
                     document.getElementById('successCount').textContent = data.successCount;
